@@ -77,7 +77,7 @@ xlabel("Frequency (Hz)");
 %% 3. Derivative based filter
 
 a2 = [1 -0.995];
-b2 = [1 -1];
+b2 = [1 -1] ./ T;
 b2 = b2./real(max(freqz(b2, a2)));
 derivated = filter(b2, a2, signal2);
 
@@ -138,7 +138,7 @@ figure(Fig2);
 
 subplot(5, 1, 4);
 power4 = abs(fft(comb, Fs));
-plot(0:(Fs - 1), power3);
+plot(0:(Fs - 1), power4);
 set(gca, 'Xlim', [0 Fs/2]);
 xlabel("Frequency (Hz)");
 title("Power spectrum of comb-filtered signal 1");
@@ -177,8 +177,8 @@ xlabel("Time (s)");
 figure(Fig2);
 
 subplot(5, 1, 5);
-power4 = abs(fft(convoluted, Fs));
-plot(0:(Fs - 1), power4);
+power5 = abs(fft(convoluted, Fs));
+plot(0:(Fs - 1), power5);
 set(gca, 'Xlim', [0 Fs/2]);
 xlabel("Frequency (Hz)");
 title("Power spectrum of all filters on signal 1");
