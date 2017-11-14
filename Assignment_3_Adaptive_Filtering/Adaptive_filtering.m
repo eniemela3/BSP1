@@ -85,24 +85,24 @@ mse3 = immse(fhb, output3);
 dataset4(1,:) = RRiInput;
 dataset4(2,:) = RespReference;
 
-c4 = 0.001; % 
+c4 = 0.999; % optimized
 energy4 = 93;
 mu4 = c4 / energy4;
-FIR_length4 = 1; % 
+FIR_length4 = 1; % optimized
 
 lmsfilt4 = dsp.LMSFilter('Length', FIR_length4, 'StepSize', mu4); 
 
 dataset4(3,:) = RespReference;
-[filtered4, output4] = lmsfilt4(RRiInput, RespReference);
-dataset4(4,:) = output4;
+[filtered4, output4] = lmsfilt4(RespReference, RRiInput);
+dataset4(4,:) = filtered4;
 
 time4 = length(RRiInput) / Fs2;
 
-titles4 = ["RRiInput", "RespReference", "LMSFilt estimate"];
+titles4 = ["RRiInput", "RespReference", "LMSFilt result"];
 plotting(dataset4, titles4, Fs2, time4);
 
-corrcoef4 = corrcoef(RespReference, output4);
-mse4 = immse(RespReference, output4);
+corrcoef4 = corrcoef(RespReference, filtered4);
+mse4 = immse(RespReference, filtered4);
 
 
 %%
