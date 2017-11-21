@@ -1,4 +1,5 @@
 clear
+close all;
 %% 1 Prepare signal
 
 ecg = load("521273S_ecg.txt.txt");
@@ -14,7 +15,7 @@ dataset(2, :) = lpf;
 
 %% HPF
 
-b2 = zeros(1, 32);
+b2 = zeros(1, 33);
 b2(1) = -1/32; b2(17) = 1; b2(18) = 1; b2(33) = 1/32;
 a2 = [1 -1];
 hpf = filter(b1, a1, lpf);
@@ -44,4 +45,8 @@ titles = ["Original", "Low Pass", "High Pass", "Derivative", "Squaring", "Integr
 Fs = 200;
 len = length(ecg) / Fs;
 
-plotting2(dataset, titles, Fs, len);
+%% QRS detection
+
+[QRSstart, QRSend] = findqrs(int, 50, 700, 950);
+
+plotting2(dataset, titles, Fs, len, QRSstart, QRSend);
