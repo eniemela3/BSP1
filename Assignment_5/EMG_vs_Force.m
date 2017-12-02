@@ -139,22 +139,22 @@ end
 figure;
 
 subplot(3,1,1);
-%title('DR vs % MVC');
-plot(MEANs, DRs);
+plot(MEANs, DRs, 'o');
+title('DR vs % MVC');
 ylabel('DR (mV)');
 xlabel('% MVC');
 hold;
 
 subplot(3,1,2);
-%title('MS vs % MVC');
-plot(MEANs, MSs);
+plot(MEANs, MSs, 'o');
+title('MS vs % MVC');
 ylabel('MS');
 xlabel('% MVC');
 hold;
 
 subplot(3,1,3);
-%title('ZCR vs % MVC');
-plot(MEANs, ZCRs);
+plot(MEANs, ZCRs, 'o');
+title('ZCR vs % MVC');
 ylabel('ZCR (Hz)');
 xlabel('% MVC');
 hold;
