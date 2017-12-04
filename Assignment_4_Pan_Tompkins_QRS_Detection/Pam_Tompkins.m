@@ -16,9 +16,9 @@ dataset(2, :) = lpf;
 %% HPF
 
 b2 = zeros(1, 33);
-b2(1) = -1/32; b2(17) = 1; b2(18) = 1; b2(33) = 1/32;
+b2(1) = -1/32; b2(17) = 1; b2(18) = -1; b2(33) = 1/32;
 a2 = [1 -1];
-hpf = filter(b1, a1, lpf);
+hpf = filter(b2, a2, lpf);
 dataset(3, :) = hpf;
 
 %% Derivative
